@@ -1,0 +1,18 @@
+{
+  "status": "clean",
+  "timestamp": "2026-03-24T17:48:17+00:00",
+  "summary": "All clear — 979 packages, 22 SUID binaries, 0 failed logins",
+  "findings": [],
+  "details": {
+    "ports": "22,53,6379,8080",
+    "packages": 979,
+    "users": "root,esam",
+    "ssh_root_login": "",
+    "ssh_password_auth": "",
+    "failed_logins": 0,
+    "security_updates": 0,
+    "suid_binaries": 22,
+    "malware": "not_installed",
+    "rootkit": "not_installed"
+  }
+}
