@@ -86,3 +86,23 @@ Here are today's key learnings from the agent log:
 - 🎙️ **Default TTS voice changed to `en-US-AriaNeural`** — Esam sampled 4 female voices and picked Aria (US American accent). Config and memory updated; all future calls will use this voice.
 
 - 🌅 **Weather added to morning briefing** — `fetch_weather()` integrated into `checks.py` pulling Al Ain data from `wttr.in` (no API key needed). Delivered as a voice message: ⛅ 27°C, 48% humidity, ~30 km/h wind.
+
+
+## 2026-03-24
+- [decision] Esam chose `en-US-AriaNeural` as the default TTS voice for all future calls and voice messages
+
+
+## 2026-03-24
+- [project] Telegram voice call bug fixed in `telegram_call.py` — wrong status name (`ACCEPTED_CALL` doesn't exist in py-tgcalls v2) caused calls to never detect answer; fix is in source
+
+
+## 2026-03-24
+- [tool] Voice call fallback to voice message works correctly — tested and confirmed delivering 13-sec audio when call goes unanswered after 30 seconds
+
+
+## 2026-03-24
+- [preference] Esam prefers health reports sent to his email, not just Telegram
+
+
+## 2026-03-24
+- [project] Kovo successfully sent a health report via email (system scored 90/100, all metrics green)
