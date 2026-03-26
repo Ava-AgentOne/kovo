@@ -109,7 +109,7 @@ function CorePage({ form, set }) {
         <p className="text-sm text-gray-500 mt-1">Required for Kovo to start.</p>
       </div>
       <Field label="Telegram Bot Token" name="telegram_bot_token" value={form.telegram_bot_token} onChange={set} placeholder="1234567890:AABBCCDDeeffgghh..." hint="Get this from @BotFather on Telegram" />
-      <Field label="Your Telegram User ID" name="esam_telegram_id" value={form.esam_telegram_id} onChange={set} placeholder="123456789" hint="Get this by messaging @userinfobot on Telegram" />
+      <Field label="Your Telegram User ID" name="owner_telegram_id" value={form.owner_telegram_id} onChange={set} placeholder="123456789" hint="Get this by messaging @userinfobot on Telegram" />
       <Field label="Webhook URL (optional)" name="webhook_url" value={form.webhook_url} onChange={set} placeholder="https://your-domain.com" hint="Leave empty to use long-polling (recommended for most setups)" />
     </div>
   )
@@ -170,7 +170,7 @@ function ReviewPage({ form, services, error }) {
 
   const rows = [
     { label: 'Bot Token', value: mask(form.telegram_bot_token), ok: !!form.telegram_bot_token },
-    { label: 'User ID', value: form.esam_telegram_id || '—', ok: !!form.esam_telegram_id },
+    { label: 'User ID', value: form.owner_telegram_id || '—', ok: !!form.owner_telegram_id },
     form.webhook_url && { label: 'Webhook URL', value: form.webhook_url, ok: true },
     services.google && { label: 'Google Creds', value: form.google_credentials_json ? '✓ JSON provided' : '✗ Empty', ok: !!form.google_credentials_json },
     services.calls && { label: 'Telegram API ID', value: form.telegram_api_id || '—', ok: !!form.telegram_api_id },
@@ -215,7 +215,7 @@ export default function Setup() {
   const [services, setServices] = useState({ google: false, calls: false, groq: false })
   const [form, setForm] = useState({
     telegram_bot_token: '',
-    esam_telegram_id: '',
+    owner_telegram_id: '',
     webhook_url: '',
     google_credentials_json: '',
     telegram_api_id: '',

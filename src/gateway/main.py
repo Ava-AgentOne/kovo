@@ -138,7 +138,7 @@ async def lifespan(app: FastAPI):
     onboarding = OnboardingFlow(workspace_dir=workspace)
     app.state.onboarding = onboarding
     if onboarding.is_active():
-        log.info("Onboarding: first-run setup will begin when Esam sends a message")
+        log.info("Onboarding: first-run setup will begin when the owner sends a message")
 
     # Build and start Telegram app
     from src.telegram.bot import build_application
@@ -182,7 +182,7 @@ async def lifespan(app: FastAPI):
     hb_cfg = cfg.get().get("heartbeat", {})
     reporter = HeartbeatReporter(
         tg_app=tg_app,
-        esam_user_id=cfg.allowed_users()[0],
+        owner_user_id=cfg.allowed_users()[0],
         structured_store=deps["store"],
     )
     heartbeat = HeartbeatScheduler(
@@ -241,7 +241,7 @@ def _init_phone_tools(agent, tg_app, transcriber=None):
             call_timeout=int(call_cfg.get("call_timeout", 30)),
         )
         agent.tg_bot = tg_app.bot
-        agent.esam_user_id = cfg.allowed_users()[0]
+        agent.owner_user_id = cfg.allowed_users()[0]
         agent.transcriber = transcriber  # enables live voice conversation on calls
         log.info("Phone tools configured (TTS=%s)", agent.tts.backend)
     except Exception as e:

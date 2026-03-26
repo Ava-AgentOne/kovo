@@ -311,7 +311,7 @@ class HeartbeatScheduler:
             log.error("Storage check failed: %s", e)
 
     async def _storage_review(self) -> None:
-        """Weekly Sunday 03:00: scan tier-2 files and ask Esam to approve cleanup."""
+        """Weekly Sunday 03:00: scan tier-2 files and ask the owner to approve cleanup."""
         if self.storage is None:
             return
         log.info("Running weekly storage review")

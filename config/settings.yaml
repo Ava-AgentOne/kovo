@@ -6,7 +6,7 @@ kovo:
 telegram:
   token: ${TELEGRAM_BOT_TOKEN}
   allowed_users:
-    - ${ESAM_TELEGRAM_ID}
+    - ${OWNER_TELEGRAM_ID}
 
 ollama:
   url: http://10.0.1.212:11434
@@ -21,7 +21,7 @@ telegram_call:
   api_id: ${TELEGRAM_API_ID}
   api_hash: ${TELEGRAM_API_HASH}
   session_name: miniclaw_caller
-  esam_user_id: ${ESAM_TELEGRAM_ID}
+  esam_user_id: ${OWNER_TELEGRAM_ID}
   call_timeout: 30
   tts:
     backend: edge-tts

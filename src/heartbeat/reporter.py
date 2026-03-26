@@ -1,5 +1,5 @@
 """
-Heartbeat reporter — sends health alerts and reports to Esam via Telegram.
+Heartbeat reporter — sends health alerts and reports to the owner via Telegram.
 Optionally logs every check to the structured SQLite store.
 """
 from __future__ import annotations
@@ -15,9 +15,9 @@ _MAX_LEN = 4096
 
 
 class HeartbeatReporter:
-    def __init__(self, tg_app: Application, esam_user_id: int, structured_store=None):
+    def __init__(self, tg_app: Application, owner_user_id: int, structured_store=None):
         self._app = tg_app
-        self._uid = esam_user_id
+        self._uid = owner_user_id
         self._store = structured_store
 
     async def send(self, text: str, parse_mode: str = "Markdown") -> None:
@@ -46,12 +46,12 @@ class HeartbeatReporter:
         await self.send(f"📊 *{title}*\n\n{report}")
 
     async def send_morning_briefing(self, briefing: str) -> None:
-        await self.send(f"🌅 *Good Morning, Esam!*\n\n{briefing}")
+        await self.send(f"🌅 *Good Morning!*\n\n{briefing}")
 
     async def send_sim_reminder(self) -> None:
         await self.send(
             "📱 *SIM Top-Up Reminder*\n\n"
             "Your prepaid SIM is approaching 90 days without a top-up. "
-            "Top it up soon to keep the MiniClaw caller account active.\n\n"
+            "Top it up soon to keep the Kovo caller account active.\n\n"
             "UAE prepaid SIMs expire after 90 days of no activity."
         )
