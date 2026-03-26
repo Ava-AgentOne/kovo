@@ -1,5 +1,5 @@
 """
-Kovo — the one and only agent Esam talks to.
+Kovo — the one and only main agent.
 
 Handles everything directly. Has access to ALL tools.
 Reads SOUL.md, USER.md, IDENTITY.md always; loads MEMORY.md, daily logs,
@@ -85,7 +85,7 @@ _STORAGE_KW = frozenset([
 
 
 class KovoAgent:
-    """Main agent — single entry point for all of Esam's requests."""
+    """Main agent — single entry point for all owner requests."""
 
     name = "kovo"
 
@@ -116,7 +116,7 @@ class KovoAgent:
         self.tts = None
         self.caller = None
         self.tg_bot = None
-        self.esam_user_id: int | None = None
+        self.owner_user_id: int | None = None
         self.transcriber = None   # set by gateway if Groq/Whisper available
 
     # ── System prompt ─────────────────────────────────────────────────────
@@ -230,12 +230,12 @@ class KovoAgent:
         # ── Always: image sending capability ─────────────────────────────
         parts.append(
             "## Image Sending\n"
-            "You can send images directly to Esam in Telegram.\n"
+            "You can send images directly to the owner in Telegram.\n"
             "To send an image, include `[SEND_IMAGE: your search query]` anywhere in your response.\n"
             "Example: `[SEND_IMAGE: cat playing piano]`\n"
             "The bot will search for the image, download it, and send it as a photo.\n"
             "You can include one or more image tags per response.\n"
-            "Use this whenever Esam asks to see a photo, image, picture, or visual."
+            "Use this whenever the owner asks to see a photo, image, picture, or visual."
         )
 
         return "\n\n---\n\n".join(parts)
@@ -363,10 +363,10 @@ class KovoAgent:
 
         try:
             result = await self.caller.call_user(
-                user_id=self.esam_user_id,
+                user_id=self.owner_user_id,
                 audio_path=mp3_path,
                 tg_bot=self.tg_bot,
-                bot_chat_id=self.esam_user_id,
+                bot_chat_id=self.owner_user_id,
             )
             method = result.get("method", "unknown")
             emoji = "📞" if method == "call" else "🎤"
