@@ -114,3 +114,15 @@ Not much to extract today — very light activity:
 - 💬 **Two brief check-ins only** — Esam said "hi" at 05:30 and 07:20, no tasks or requests made
 - 🤖 **Both sessions used claude/sonnet** — no Ollama routing or sub-agent delegation triggered
 - ✅ **System responding normally** — bot replied correctly to both messages, no errors logged
+
+
+## 2026-03-26
+- [project] Security audit triggered twice in quick succession (10:33 and 10:36) for executable files in /tmp and /dev/shm — system was found clean both times
+
+
+## 2026-03-26
+- [decision] Auto-extract memory log format confirmed working — Kovo correctly identified light-activity days with only brief check-ins
+
+
+## 2026-03-26
+- [project] /dev/shm was empty during security scan; /tmp had one executable file that was flagged but cleared as legitimate
